@@ -7,8 +7,8 @@
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Delete Post</legend>
-            <h5>Are you sure you want to delete the post?</h5>
+            <legend class="border-bottom mb-4">Delete Project</legend>
+            <h5>Are you sure you want to delete the project?</h5>
             <h3>"{{ post.title }}"</h3>
         </fieldset>
         <div class="form-group">
@@ -17,7 +17,7 @@
             <a class="btn btn-outline-secondary btn-sm"
                href="{% url 'awadz:post-detail' post.id %}">Cancel
             </a>
-            <br><small>Once post deleted there is now way it can be bring back.</small>
+            <br><small>Once project deleted there is now way it can be bring back.</small>
         </div>
     </form>
 </div>

@@ -1,6 +1,7 @@
 # Third party imports.
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.base import Model
 from django.urls import reverse
 from django.utils import timezone
 from PIL import Image
@@ -115,3 +116,26 @@ def comment_added_notify(sender, instance, *args, **kwargs):
 @receiver(pre_save,sender=Post)
 def sulg_generator(sender, instance, *args, **kwargs):
     instance.slug = slugify(instance.title+" "+str(sender.objects.count()))
+
+RATE_CHOICES = [
+    (1, '1 - Trash'),
+    (2, '2 - Horrible'),
+    (3, '3 - Terrible'),
+    (4, '4 - Bad'),
+    (5, '5 - Ok'),
+    (6, '6 - Good'),
+    (7, '7 - Very Good'),
+    (8, '8 - Excellent'),
+    (9, '9 - Perfect'),
+    (10, '10 - Masterpiece'),
+]
+
+class Review(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+    text = models.TextField(max_length=3000,blank=True)
+    rate = models.PositiveSmallIntegerField(choices=RATE_CHOICES)
+
+    def __str__(self) -> str:
+        return self.user.username
