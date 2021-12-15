@@ -1,6 +1,10 @@
 from django import forms
 
-from .models import Comment, PostReport, Post, Review, RATE_CHOICES
+
+from django.db.models.expressions import F
+from imagekit.models import fields
+
+from .models import Comment, PostReport, Post
 
 class PostForm(forms.ModelForm):
 	class Meta:
@@ -18,5 +22,3 @@ class ReportPostForm(forms.ModelForm):
 		fields = ['reason']
 
 
-class RateForm(forms.ModelForm):
-	text = forms.CharField()

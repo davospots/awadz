@@ -10,7 +10,7 @@
         <form action="{% url 'awadz:post-create' %}" method="POST" id="post-form">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Add Post</legend>
+                <legend class="border-bottom mb-4">Add Project</legend>
                 {{form | crispy}}
             </fieldset>
             <div class="form-group" style="display: flex;justify-content: flex-end;">

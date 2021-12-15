@@ -1,7 +1,9 @@
 from django.contrib.auth.models import User
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404,redirect
 from django.db.models import Q
 from django.http import HttpResponse,JsonResponse
+from django.urls.base import reverse
 try:
     from django.utils import simplejson as json
 except ImportError:
@@ -23,6 +25,7 @@ def home_view(request):
     user = request.user
 
     if user.is_authenticated:
+        
         follows_users = user.profile.follows.all()
         follows_posts = Post.objects.filter(author_id__in=follows_users)
         user_posts = Post.objects.filter(author=user)
@@ -254,3 +257,37 @@ def notifications_unread_count_view(request,username=None):
             'count':count
         }
         return JsonResponse(data)
+
+
+
+@login_required(login_url="/accounts/login/")
+def rate_project(request, id):
+    if request.method == "POST":
+
+        post = Post.objects.get(id=id)
+        current_user = request.user
+
+        design_rate=request.POST["design"]
+        usability_rate=request.POST["usability"]
+        content_rate=request.POST["content"]
+
+        Rating.objects.create(
+            post=post,
+            user=current_user,
+            design_rate=design_rate,
+            usability_rate=usability_rate,
+            content_rate=content_rate,
+            avg_rate=round((float(design_rate)+float(usability_rate)+float(content_rate))/3,2),
+        )
+
+        # get the avarage rate of the project for the three rates
+        avg_rating= (int(design_rate)+int(usability_rate)+int(content_rate))/3
+
+        # update the project with the new rate
+        post.rate=avg_rating
+        post.update_project()
+
+        return render(request, "project.html", {"success": "Project Rated Successfully", "post": post, "rating": Rating.objects.filter(project=project)})
+    else:
+        post = Post.objects.get(id=id)
+        return render(request, "project.html", {"danger": "Project Rating Failed", "post": post})
