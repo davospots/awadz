@@ -66,7 +66,7 @@
                 
                 {% if user_id == request.user %}
 					<a href="{% url 'awadz:post-create' %}" data-toggle="tooltip" title="Add Post">
-                		<button type="button" class="btn btn-primary btn-sm">Add Post</button>
+                		<button type="button" class="btn btn-primary btn-sm">Add Project</button>
                 	</a>
                 {% else %}
                 <a href="{% url 'follow-unfollow' user_id.id %}">
@@ -82,16 +82,8 @@
     </div>
     <div class="user-network">
         <div class="followers">
-            <span><b>{{user_id.profile.followers.count}}</b></span>
-            <a class="link-style-none" href="#" data-toggle="modal" data-target="#2"><span>followers</span></a>
-        </div>
-        <div class="following">
-            <span><b>{{user_id.profile.follows.count}}</b></span>
-            <a class="link-style-none" href="#" data-toggle="modal" data-target="#3"><span>following</span></a>
-        </div>
-        <div class="followers">
             <span><b>{{post_count}}</b></span>
-            <span>posts</span>
+            <span>Projects</span>
         </div>
     </div>
 
@@ -126,7 +118,7 @@
 	    </article>
 	{% empty %}
 		{% if user_id == request.user %}
-			<p>To add post click Add Post button.</p>
+			<p>To add project click Add Project button.</p>
 			<p>To add or edit more information on your profile click on pencil icon.</p>
 			<br>
 		{% endif %}

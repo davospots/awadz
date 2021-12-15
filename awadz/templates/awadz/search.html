@@ -7,7 +7,7 @@
         <div class="search-form-div">
           <form method="POST" class="search-form">
             {% csrf_token %}
-            <input type="text" name="search" class="search-input" placeholder="search username and posts">
+            <input type="text" name="search" class="search-input" placeholder="search Username and Projects">
             <input type="submit" name="" value="Search" class="btn-search">
           </form>
         </div>
@@ -78,7 +78,7 @@
     {% endfor %}
     {% endif %}
       <div class="recent-posts">
-        <h1 class="recent-posts-heading">Recent Posts:</h1>
+        <h1 class="recent-posts-heading">Recently Uploaded Projects:</h1>
       </div>
     <div class="infinite-container">
     {% for post in posts %}

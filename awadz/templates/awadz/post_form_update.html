@@ -1,7 +1,7 @@
 {% extends "awadz/base.html" %}
 {% load crispy_forms_tags %}
  {% block title %}
-   <title>Update post * @{{request.user.username}} - Awadz</title> 
+   <title>Update Project * @{{request.user.username}} - Awadz</title> 
  {% endblock %}
 {% block content %}
 
@@ -10,7 +10,7 @@
         <form action="{% url 'awadz:post-update' post.pk%}" method="POST" id="post-form">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Update Post</legend>
+                <legend class="border-bottom mb-4">Update Project</legend>
                 {{form | crispy}}
             </fieldset>
             <div class="form-group" style="display: flex;justify-content: flex-end;">
