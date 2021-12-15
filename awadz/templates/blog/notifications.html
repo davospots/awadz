@@ -1,4 +1,4 @@
-{% extends "blog/base.html" %}
+{% extends "awadz/base.html" %}
 {% block title %}<title> @{{request.user.username}}'s notifications- Instaclone</title>{% endblock %}
 
 {% block content %}
@@ -13,7 +13,7 @@
 
             <a href="{% url 'profile' notification.sender.username %}" style="text-decoration: blink;">{{notification.sender.username}}</a> {{notification.action}} 
             {% if notification.post %}
-             <span class="post-title-notify"><a href="{% url 'blog:post-detail' notification.post.slug %}">"{{notification.post.title}}".</a></span>
+             <span class="post-title-notify"><a href="{% url 'awadz:post-detail' notification.post.slug %}">"{{notification.post.title}}".</a></span>
             {% endif %}
              <br><small>({{notification.timestamp|date:"D, d M, g:i a"}})</small>
           </p>
@@ -34,7 +34,7 @@
         <script>
         $( document ).ready(function(){
             $.ajax({
-                url: "{% url 'blog:notifications-update' request.user.username %}",
+                url: "{% url 'awadz:notifications-update' request.user.username %}",
                 type: 'get',
                 success: function(data){
                 },

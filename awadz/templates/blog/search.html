@@ -1,6 +1,6 @@
-{% extends "blog/base.html" %}
+{% extends "awadz/base.html" %}
 {% block title %}
-  <title>Search & Recent Posts -  InstaClone</title>
+  <title>Search & Recent Posts -  Awadz</title>
 {% endblock %}
 {% block content %}
 
@@ -63,11 +63,11 @@
               </small>
             </div>
             <h2><a class="article-title"
-                   href="{% url 'blog:post-detail' post.slug %}">{{ post.title }}
+                   href="{% url 'awadz:post-detail' post.slug %}">{{ post.title }}
                 </a>
             </h2>
             <p class="article-content">{{ post.content|truncatewords:30}}</p>
-            <a class="read-more" href="{% url 'blog:post-detail' post.slug %}"><small>Read More</small></a>
+            <a class="read-more" href="{% url 'awadz:post-detail' post.slug %}"><small>Read More</small></a>
 
             <div class="post-applause">
               <span class="badge badge-secondary">{{post.likes.count}} Likes</span>
@@ -98,12 +98,12 @@
               </div>
               <p class="h-font">
                 <a class="article-title"
-                     href="{% url 'blog:post-detail' post.slug %}">{{ post.title }}
+                     href="{% url 'awadz:post-detail' post.slug %}">{{ post.title }}
                   </a>
               </p>              
             </div>
             <p class="article-content">{{ post.content|truncatewords:30}}</p>
-            <a class="read-more" href="{% url 'blog:post-detail' post.slug %}"><small>Read More</small></a>
+            <a class="read-more" href="{% url 'awadz:post-detail' post.slug %}"><small>Read More</small></a>
             <div class="post-applause">
               <span class="badge badge-secondary">{{post.likes.count}} likes</span>
             </div>
