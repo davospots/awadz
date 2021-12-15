@@ -14,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from .models import Post, Comment, PostReport, Notification
+from .models import Post, Comment, PostReport, Notification, Rating
 from users.models import UserReport
 from users.models import Profile
 from .forms import CommentForm, ReportPostForm, PostForm
@@ -25,7 +25,7 @@ def home_view(request):
     user = request.user
 
     if user.is_authenticated:
-        
+        rating = Rating.objects.filter().first()
         follows_users = user.profile.follows.all()
         follows_posts = Post.objects.filter(author_id__in=follows_users)
         user_posts = Post.objects.filter(author=user)
