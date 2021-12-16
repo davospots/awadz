@@ -18,6 +18,7 @@ from decouple import config,Csv
 
 # cloudinary
 import cloudinary
+import cloudinary_storage
 import cloudinary.uploader
 import cloudinary.api
 
@@ -92,6 +93,8 @@ INSTALLED_APPS = [
 
     # Third_party_apps.
     'crispy_forms',
+    
+    'cloudinary',   
     # taggit
     'taggit',
     #forthumbnails
@@ -207,6 +210,7 @@ TIME_ZONE =  'Africa/Nairobi'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 
 # Configure Django App for Heroku.
